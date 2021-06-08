@@ -7,7 +7,7 @@ const route = Router()
 route.get("/", async (req, res, next) => {
   try {
     const dbResponse = await query(
-      "SELECT * FROM blogs ORDER BY created_at DESC"
+      "SELECT * FROM blogs AS blog INNER JOIN authors AS author ON blog.author=author.id "
     )
     res.send(dbResponse)
   } catch (error) {
